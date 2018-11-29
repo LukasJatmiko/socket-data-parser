@@ -4,14 +4,15 @@ import (
 	"regexp"
 )
 
+//Parse : Parse data into JSON
 func Parse(databuf []byte, datalength int) []string {
 	rgx := regexp.MustCompile(`(?i)}{`)
 	messages := rgx.Split(string(databuf[:datalength]), -1)
 
-	for msgIdx, _ := range messages {
+	for msgIdx := range messages {
 		//Restore splitted message
 		if len(messages) != 1 {
-			if msgIdx == 1 {
+			if msgIdx == 0 {
 				messages[msgIdx] = messages[msgIdx] + "}"
 			} else {
 				if msgIdx == (len(messages) - 1) {
