@@ -6,7 +6,7 @@ import (
 
 //Parse : Parse data into JSON
 func Parse(databuf []byte, datalength int) []string {
-	rgx := regexp.MustCompile(`(?i)}{`)
+	rgx := regexp.MustCompile(`(?i)}[\n\s\t\r]*{`)
 	messages := rgx.Split(string(databuf[:datalength]), -1)
 
 	for msgIdx := range messages {
